@@ -61,6 +61,24 @@
                 android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/ivProductPreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:background="#EEEEEE"
+            android:contentDescription="Product Preview" />
+
+        <Button
+            android:id="@+id/btnSelectImage"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Select Product Image" />
+
         <Button
             android:id="@+id/btnSaveProduct"
             android:layout_width="match_parent"

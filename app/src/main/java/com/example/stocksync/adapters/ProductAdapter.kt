@@ -3,6 +3,7 @@ package com.example.stocksync.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.stocksync.databinding.ProductItemBinding
 import com.example.stocksync.models.Product
 
@@ -24,6 +25,13 @@ class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter
             tvProductName.text = product.name
             tvProductPrice.text = "Price: $${product.price}"
             tvProductQuantity.text = "Stock: ${product.quantity}"
+            
+            // Load image using Coil
+            ivProductImage.load(product.imageUri) {
+                crossfade(true)
+                placeholder(android.R.drawable.ic_menu_gallery)
+                error(android.R.drawable.ic_menu_report_image)
+            }
         }
     }
 

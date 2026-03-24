@@ -15,7 +15,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
 
     companion object {
         private const val DATABASE_NAME = "StockSync.db"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
 
         // Table Names
         private const val TABLE_PRODUCTS = "Products"
@@ -27,6 +27,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
         private const val KEY_PROD_NAME = "name"
         private const val KEY_PROD_PRICE = "price"
         private const val KEY_PROD_QTY = "quantity"
+        private const val KEY_PROD_IMAGE_URI = "image_uri"
 
         // Customers Table Columns
         private const val KEY_CUST_ID = "id"
@@ -46,7 +47,8 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
                 "$KEY_PROD_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "$KEY_PROD_NAME TEXT," +
                 "$KEY_PROD_PRICE REAL," +
-                "$KEY_PROD_QTY INTEGER)")
+                "$KEY_PROD_QTY INTEGER," +
+                "$KEY_PROD_IMAGE_URI TEXT)")
 
         val createCustomersTable = ("CREATE TABLE $TABLE_CUSTOMERS (" +
                 "$KEY_CUST_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -82,6 +84,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
             put(KEY_PROD_NAME, product.name)
             put(KEY_PROD_PRICE, product.price)
             put(KEY_PROD_QTY, product.quantity)
+            put(KEY_PROD_IMAGE_URI, product.imageUri)
         }
         val success = db.insert(TABLE_PRODUCTS, null, values)
         db.close()
@@ -100,7 +103,8 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
                 val name = cursor.getString(cursor.getColumnIndexOrThrow(KEY_PROD_NAME))
                 val price = cursor.getDouble(cursor.getColumnIndexOrThrow(KEY_PROD_PRICE))
                 val quantity = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_PROD_QTY))
-                productList.add(Product(id, name, price, quantity))
+                val imageUri = cursor.getString(cursor.getColumnIndexOrThrow(KEY_PROD_IMAGE_URI))
+                productList.add(Product(id, name, price, quantity, imageUri))
             } while (cursor.moveToNext())
         }
         cursor.close()
