@@ -7,6 +7,18 @@
         <item name="android:statusBarColor">@color/purple_500</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">false</item>
+        
+        <!-- Bold Toolbar Title -->
+        <item name="toolbarStyle">@style/Widget.StockSync.Toolbar</item>
+    </style>
+
+    <style name="Widget.StockSync.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.StockSync.Toolbar.Title</item>
+    </style>
+
+    <style name="TextAppearance.StockSync.Toolbar.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="Theme.StockSync" parent="Base.Theme.StockSync" />
