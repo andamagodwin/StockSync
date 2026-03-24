@@ -1,59 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:fitsSystemWindows="true"
+    android:background="@color/purple_500">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Order"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Customer:"
-        android:layout_marginBottom="8dp"/>
-    <Spinner
-        android:id="@+id/spinnerCustomer"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
-        android:background="?android:attr/editTextBackground"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Create Order"
+        app:titleTextColor="@color/white"
+        android:layout_marginBottom="0dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Product:"
-        android:layout_marginBottom="8dp"/>
-    <Spinner
-        android:id="@+id/spinnerProduct"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
-        android:background="?android:attr/editTextBackground"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@color/white">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etOrderQty"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Customer:"
+            android:layout_marginBottom="8dp"/>
+        <Spinner
+            android:id="@+id/spinnerCustomer"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="?android:attr/editTextBackground"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Product:"
+            android:layout_marginBottom="8dp"/>
+        <Spinner
+            android:id="@+id/spinnerProduct"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="?android:attr/editTextBackground"/>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Quantity"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginBottom="24dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOrderQty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quantity"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/btnPlaceOrder"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="Place Order" />
-
+        <Button
+            android:id="@+id/btnPlaceOrder"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Place Order" />
+    </LinearLayout>
 </LinearLayout>
