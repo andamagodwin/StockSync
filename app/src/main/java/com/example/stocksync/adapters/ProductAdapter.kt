@@ -23,7 +23,7 @@ class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter
         val product = products[position]
         holder.binding.apply {
             tvProductName.text = product.name
-            tvProductPrice.text = "Price: $${product.price}"
+            tvProductPrice.text = "Price: UGX ${product.price}"
             tvProductQuantity.text = "Stock: ${product.quantity}"
             
             // Load image using Coil
