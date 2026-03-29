@@ -9,35 +9,52 @@ import com.example.stocksync.databinding.ActivityLoginBinding
 import com.example.stocksync.models.Customer
 
 /**
- * LoginActivity provides a basic entry point. 
- * For this assignment, it also initializes some dummy customer data if the table is empty.
+ * LoginActivity provides a basic entry point for the StockSync application.
+ * In this coursework task, we demonstrate navigation and data initialization.
+ * 
+ * We use 'ViewBinding' to safely and efficiently access our UI elements.
  */
 class LoginActivity : AppCompatActivity() {
 
+    // ViewBinding reference to the activity's layout
     private lateinit var binding: ActivityLoginBinding
 
+    /**
+     * Entry point of the activity lifecycle.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Initialize ViewBinding: this generates the layout's root view
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Pre-populate customers if none exist for demonstration
+        // For this student project, we pre-populate customers if the database is empty.
+        // This ensures the marker has data to work with when creating orders.
         val db = DatabaseHandler(this)
         if (db.readCustomers().isEmpty()) {
             db.addCustomer(Customer(name = "John Doe", phone = "555-0101"))
             db.addCustomer(Customer(name = "Jane Smith", phone = "555-0102"))
         }
 
+        // Listener for the login button
         binding.btnLogin.setOnClickListener {
+            // Retrieve text input from the UI fields
             val username = binding.etUsername.text.toString()
             val password = binding.etPassword.text.toString()
 
-            // Basic logic: any non-empty credentials allow entry for this coursework task
+            // For this specific task, any non-empty credentials allow entry.
+            // This simplifies the login process for demonstration purposes.
             if (username.isNotEmpty() && password.isNotEmpty()) {
+                // An 'Intent' is the standard way to move between activities in Android.
                 val intent = Intent(this, ProductListActivity::class.java)
                 startActivity(intent)
-                finish() // Close login screen
+                
+                // We call finish() to remove this login screen from the back stack.
+                // This prevents the user from going back to the login screen after entering.
+                finish() 
             } else {
+                // A 'Toast' is a simple popup message to alert the user.
                 Toast.makeText(this, "Please enter username and password", Toast.LENGTH_SHORT).show()
             }
         }
