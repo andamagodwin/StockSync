@@ -5,15 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="@color/purple_500">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:title="StockSync"
-        app:titleTextColor="@color/white" />
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,15 +22,6 @@
             android:tint="@color/purple_500"
             android:layout_marginBottom="24dp"
             android:contentDescription="StockSync Logo" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="StockSync"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
