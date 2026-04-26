@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primary"
-        app:title="Add New Product"
+        app:title="Edit Product"
         app:titleTextColor="@color/white"/>
 
     <ScrollView
@@ -88,14 +88,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="Select Product Image" />
+                android:text="Change Product Image" />
 
             <Button
-                android:id="@+id/btnSaveProduct"
+                android:id="@+id/btnUpdateProduct"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:layout_marginBottom="12dp"
                 android:backgroundTint="@color/primary"
-                android:text="Save Product" />
+                android:text="Update Product" />
+
+            <Button
+                android:id="@+id/btnDeleteProduct"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="@color/error"
+                android:text="Delete Product"
+                android:textColor="@color/white" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

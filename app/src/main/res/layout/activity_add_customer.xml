@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primary"
-        app:title="Create Order"
+        app:title="Add Customer"
         app:titleTextColor="@color/white"/>
 
     <LinearLayout
@@ -21,31 +21,18 @@
         android:padding="24dp"
         android:background="@color/background">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Customer:"
-            android:textColor="@color/on_surface"
-            android:layout_marginBottom="8dp"/>
-        <Spinner
-            android:id="@+id/spinnerCustomer"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="16dp"
-            android:background="?android:attr/editTextBackground"/>
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Product:"
-            android:textColor="@color/on_surface"
-            android:layout_marginBottom="8dp"/>
-        <Spinner
-            android:id="@+id/spinnerProduct"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
             android:layout_marginBottom="16dp"
-            android:background="?android:attr/editTextBackground"/>
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCustName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Customer Name"
+                android:inputType="textPersonName"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -53,18 +40,19 @@
             android:layout_marginBottom="24dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etOrderQty"
+                android:id="@+id/etCustPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Quantity"
-                android:inputType="number"/>
+                android:hint="Phone Number"
+                android:inputType="phone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnPlaceOrder"
+            android:id="@+id/btnSaveCustomer"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:backgroundTint="@color/primary"
-            android:text="Place Order" />
+            android:text="Save Customer" />
+
     </LinearLayout>
 </LinearLayout>

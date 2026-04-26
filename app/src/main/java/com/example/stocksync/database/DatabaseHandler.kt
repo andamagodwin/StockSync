@@ -5,7 +5,11 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.stocksync.models.Customer
+import com.example.stocksync.models.Order
+import com.example.stocksync.models.OrderDisplay
 import com.example.stocksync.models.Product
+import com.example.stocksync.models.User
+import java.security.MessageDigest
 
 /**
  * DatabaseHandler manages the local SQLite database for StockSync.
@@ -19,7 +23,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
     companion object {
         // Database metadata
         private const val DATABASE_NAME = "StockSync.db"
-        private const val DATABASE_VERSION = 2 // Incremented to 2 when we added image support
+        private const val DATABASE_VERSION = 3
 
         // Table Names - used throughout the class to avoid typos
         private const val TABLE_PRODUCTS = "Products"
@@ -44,6 +48,12 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
         private const val KEY_ORDER_PROD_ID = "prod_id"
         private const val KEY_ORDER_DATE = "date"
         private const val KEY_ORDER_QTY = "qty"
+
+        // Users Table
+        private const val TABLE_USERS = "Users"
+        private const val KEY_USER_ID = "id"
+        private const val KEY_USER_USERNAME = "username"
+        private const val KEY_USER_PASSWORD = "password_hash"
     }
 
     /**
@@ -77,10 +87,25 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
                 "FOREIGN KEY($KEY_ORDER_CUST_ID) REFERENCES $TABLE_CUSTOMERS($KEY_CUST_ID)," +
                 "FOREIGN KEY($KEY_ORDER_PROD_ID) REFERENCES $TABLE_PRODUCTS($KEY_PROD_ID))")
 
-        // Execute the SQL creation strings
+        val createUsersTable = ("CREATE TABLE $TABLE_USERS (" +
+                "$KEY_USER_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$KEY_USER_USERNAME TEXT UNIQUE," +
+                "$KEY_USER_PASSWORD TEXT)")
+
         db.execSQL(createProductsTable)
         db.execSQL(createCustomersTable)
         db.execSQL(createOrdersTable)
+        db.execSQL(createUsersTable)
+
+        seedDefaultUser(db)
+    }
+
+    private fun seedDefaultUser(db: SQLiteDatabase) {
+        val values = ContentValues().apply {
+            put(KEY_USER_USERNAME, "admin")
+            put(KEY_USER_PASSWORD, hashPassword("admin123"))
+        }
+        db.insert(TABLE_USERS, null, values)
     }
 
     /**
@@ -88,9 +113,10 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
      * For this project, we simply drop and recreate the tables.
      */
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_ORDERS")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_PRODUCTS")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_CUSTOMERS")
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_ORDERS")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
         onCreate(db)
     }
 
@@ -143,6 +169,44 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
         return productList
     }
 
+    fun updateProduct(product: Product): Int {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(KEY_PROD_NAME, product.name)
+            put(KEY_PROD_PRICE, product.price)
+            put(KEY_PROD_QTY, product.quantity)
+            put(KEY_PROD_IMAGE_URI, product.imageUri)
+        }
+        val result = db.update(TABLE_PRODUCTS, values, "$KEY_PROD_ID = ?", arrayOf(product.id.toString()))
+        db.close()
+        return result
+    }
+
+    fun deleteProduct(productId: Int): Int {
+        val db = this.writableDatabase
+        val result = db.delete(TABLE_PRODUCTS, "$KEY_PROD_ID = ?", arrayOf(productId.toString()))
+        db.close()
+        return result
+    }
+
+    fun getProduct(productId: Int): Product? {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_PRODUCTS WHERE $KEY_PROD_ID = ?", arrayOf(productId.toString()))
+        var product: Product? = null
+        if (cursor.moveToFirst()) {
+            product = Product(
+                id = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_PROD_ID)),
+                name = cursor.getString(cursor.getColumnIndexOrThrow(KEY_PROD_NAME)),
+                price = cursor.getDouble(cursor.getColumnIndexOrThrow(KEY_PROD_PRICE)),
+                quantity = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_PROD_QTY)),
+                imageUri = cursor.getString(cursor.getColumnIndexOrThrow(KEY_PROD_IMAGE_URI))
+            )
+        }
+        cursor.close()
+        db.close()
+        return product
+    }
+
     // --- Customer Operations ---
 
     /**
@@ -178,6 +242,26 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
         cursor.close()
         db.close()
         return customerList
+    }
+
+    // --- Order Operations ---
+
+    fun updateCustomer(customer: Customer): Int {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(KEY_CUST_NAME, customer.name)
+            put(KEY_CUST_PHONE, customer.phone)
+        }
+        val result = db.update(TABLE_CUSTOMERS, values, "$KEY_CUST_ID = ?", arrayOf(customer.id.toString()))
+        db.close()
+        return result
+    }
+
+    fun deleteCustomer(customerId: Int): Int {
+        val db = this.writableDatabase
+        val result = db.delete(TABLE_CUSTOMERS, "$KEY_CUST_ID = ?", arrayOf(customerId.toString()))
+        db.close()
+        return result
     }
 
     // --- Order Operations ---
@@ -221,5 +305,75 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
             db.endTransaction()
             db.close()
         }
+    }
+
+    fun readOrders(): List<OrderDisplay> {
+        val orderList = mutableListOf<OrderDisplay>()
+        val query = """
+            SELECT o.$KEY_ORDER_ID, c.$KEY_CUST_NAME, p.$KEY_PROD_NAME,
+                   o.$KEY_ORDER_QTY, o.$KEY_ORDER_DATE, p.$KEY_PROD_PRICE
+            FROM $TABLE_ORDERS o
+            INNER JOIN $TABLE_CUSTOMERS c ON o.$KEY_ORDER_CUST_ID = c.$KEY_CUST_ID
+            INNER JOIN $TABLE_PRODUCTS p ON o.$KEY_ORDER_PROD_ID = p.$KEY_PROD_ID
+            ORDER BY o.$KEY_ORDER_ID DESC
+        """.trimIndent()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            do {
+                orderList.add(
+                    OrderDisplay(
+                        id = cursor.getInt(0),
+                        customerName = cursor.getString(1),
+                        productName = cursor.getString(2),
+                        quantity = cursor.getInt(3),
+                        date = cursor.getString(4),
+                        totalPrice = cursor.getDouble(5) * cursor.getInt(3)
+                    )
+                )
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return orderList
+    }
+
+    fun deleteOrder(orderId: Int): Int {
+        val db = this.writableDatabase
+        val result = db.delete(TABLE_ORDERS, "$KEY_ORDER_ID = ?", arrayOf(orderId.toString()))
+        db.close()
+        return result
+    }
+
+    // --- Authentication Operations ---
+
+    fun authenticateUser(username: String, password: String): Boolean {
+        val db = this.readableDatabase
+        val hash = hashPassword(password)
+        val cursor = db.rawQuery(
+            "SELECT $KEY_USER_ID FROM $TABLE_USERS WHERE $KEY_USER_USERNAME = ? AND $KEY_USER_PASSWORD = ?",
+            arrayOf(username, hash)
+        )
+        val authenticated = cursor.moveToFirst()
+        cursor.close()
+        db.close()
+        return authenticated
+    }
+
+    fun registerUser(username: String, password: String): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(KEY_USER_USERNAME, username)
+            put(KEY_USER_PASSWORD, hashPassword(password))
+        }
+        val result = db.insert(TABLE_USERS, null, values)
+        db.close()
+        return result
+    }
+
+    private fun hashPassword(password: String): String {
+        val digest = MessageDigest.getInstance("SHA-256")
+        val bytes = digest.digest(password.toByteArray())
+        return bytes.joinToString("") { "%02x".format(it) }
     }
 }

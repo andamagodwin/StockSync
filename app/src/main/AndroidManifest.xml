@@ -25,6 +25,9 @@
         <activity android:name=".activities.ProductListActivity" />
         <activity android:name=".activities.AddProductActivity" />
         <activity android:name=".activities.CreateOrderActivity" />
+        <activity android:name=".activities.EditProductActivity" />
+        <activity android:name=".activities.OrderHistoryActivity" />
+        <activity android:name=".activities.AddCustomerActivity" />
 
     </application>
 

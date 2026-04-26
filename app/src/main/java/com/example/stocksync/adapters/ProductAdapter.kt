@@ -13,7 +13,10 @@ import com.example.stocksync.models.Product
  * 
  * Adapters are the bridge between your data source (SQLite) and your UI components.
  */
-class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(
+    private val products: List<Product>,
+    private val onItemClick: ((Product) -> Unit)? = null
+) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     /**
      * The 'ViewHolder' class is a design pattern used to minimize the number of calls 
@@ -49,9 +52,13 @@ class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter
             // We use the 'Coil' library to load the image URI in the background.
             // This prevents the UI thread from freezing while loading a picture.
             ivProductImage.load(product.imageUri) {
-                crossfade(true) // Smooth fade animation for better UX
-                placeholder(android.R.drawable.ic_menu_gallery) // Default image while loading
-                error(android.R.drawable.ic_menu_report_image) // Fallback if image fails
+                crossfade(true)
+                placeholder(android.R.drawable.ic_menu_gallery)
+                error(android.R.drawable.ic_menu_report_image)
+            }
+
+            root.setOnClickListener {
+                onItemClick?.invoke(product)
             }
         }
     }

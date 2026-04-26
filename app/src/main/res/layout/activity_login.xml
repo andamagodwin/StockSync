@@ -19,16 +19,25 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             android:contentDescription="StockSync Logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="StockSync"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Login to manage your inventory"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_marginBottom="48dp"
-            android:textColor="@android:color/darker_gray"/>
+            android:textColor="@color/on_surface_medium"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -48,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
@@ -61,9 +71,9 @@
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="56dp"
             android:text="Login"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/primary"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:textSize="18sp" />
