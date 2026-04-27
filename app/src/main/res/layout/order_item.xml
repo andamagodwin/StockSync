@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
     app:cardElevation="2dp"
-    app:cardCornerRadius="12dp"
-    app:cardBackgroundColor="@color/surface">
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/surface"
+    app:rippleColor="#20000000">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,21 +18,28 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Top row: Order ID badge + date -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/tvOrderId"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:background="@drawable/bg_order_badge"
                 android:text="Order #1"
-                android:textSize="16sp"
+                android:textSize="13sp"
                 android:textStyle="bold"
                 android:textColor="@color/primary"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/tvOrderDate"
@@ -39,6 +50,14 @@
                 android:textColor="@color/on_surface_medium"/>
         </LinearLayout>
 
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:alpha="0.5"
+            android:layout_marginBottom="10dp"/>
+
         <TextView
             android:id="@+id/tvOrderCustomer"
             android:layout_width="match_parent"
@@ -46,7 +65,7 @@
             android:text="Customer: John Doe"
             android:textSize="14sp"
             android:textColor="@color/on_surface"
-            android:layout_marginBottom="2dp"/>
+            android:layout_marginBottom="3dp"/>
 
         <TextView
             android:id="@+id/tvOrderProduct"
@@ -55,13 +74,14 @@
             android:text="Product: Widget"
             android:textSize="14sp"
             android:textColor="@color/on_surface"
-            android:layout_marginBottom="2dp"/>
+            android:layout_marginBottom="8dp"/>
 
+        <!-- Bottom row: Qty + Total -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="2dp">
 
             <TextView
                 android:id="@+id/tvOrderQty"
@@ -77,9 +97,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total: UGX 5000.0"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="@color/primary"/>
+                android:textColor="@color/primary"
+                android:fontFamily="sans-serif-medium"/>
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

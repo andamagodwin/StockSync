@@ -13,25 +13,53 @@
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-    <TextView
+    <!-- Richer empty state -->
+    <LinearLayout
         android:id="@+id/tvEmpty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="No customers yet.\nTap + to add one!"
-        android:textSize="16sp"
-        android:textColor="@color/on_surface_medium"
-        android:visibility="gone"/>
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="32dp">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_customers"
+            app:tint="@color/divider"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="No customers"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No customers yet"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/on_surface"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap + to add your first customer"
+            android:textSize="14sp"
+            android:textColor="@color/on_surface_medium"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="24dp"
         android:contentDescription="Add Customer"
-        app:backgroundTint="@color/primary"
-        app:tint="@color/white"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:text="Add"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/secondary"
+        app:iconTint="@color/white"
+        app:icon="@android:drawable/ic_input_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

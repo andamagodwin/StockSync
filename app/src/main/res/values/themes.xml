@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Base.Theme.StockSync" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.QuickBill" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_dark</item>
         <item name="colorSecondary">@color/secondary</item>
@@ -10,30 +10,70 @@
         <item name="colorOnPrimary">@color/on_primary</item>
         <item name="colorOnSurface">@color/on_surface</item>
         <item name="colorError">@color/error</item>
-        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="toolbarStyle">@style/Widget.StockSync.Toolbar</item>
+        <item name="android:navigationBarColor">@color/bottom_nav_bg</item>
+        <item name="toolbarStyle">@style/Widget.QuickBill.Toolbar</item>
     </style>
 
-    <style name="Widget.StockSync.Toolbar" parent="Widget.Material3.Toolbar">
-        <item name="titleTextAppearance">@style/TextAppearance.StockSync.Toolbar.Title</item>
+    <style name="Widget.QuickBill.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.QuickBill.Toolbar.Title</item>
     </style>
 
-    <style name="TextAppearance.StockSync.Toolbar.Title" parent="TextAppearance.Material3.TitleLarge">
+    <style name="TextAppearance.QuickBill.Toolbar.Title" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Widget.QuickBill.BottomNav.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/bottom_nav_indicator</item>
+    </style>
+
+    <!-- Text input styling -->
+    <style name="Widget.QuickBill.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxStrokeColor">@color/primary_light</item>
+        <item name="hintTextColor">@color/primary</item>
+    </style>
+
+    <!-- Primary button styling -->
+    <style name="Widget.QuickBill.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="backgroundTint">@color/primary</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="Theme.StockSync" parent="Base.Theme.StockSync" />
-
-    <style name="Widget.StockSync.BottomNav.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/primary_light</item>
+    <!-- Outlined button styling -->
+    <style name="Widget.QuickBill.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="strokeColor">@color/primary_light</item>
+        <item name="android:textColor">@color/primary</item>
     </style>
 
-    <style name="Theme.StockSync.Login" parent="Theme.StockSync">
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+    <!-- Danger button styling -->
+    <style name="Widget.QuickBill.Button.Danger" parent="Widget.Material3.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="backgroundTint">@color/error</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.QuickBill" parent="Base.Theme.QuickBill" />
+
+    <style name="Theme.QuickBill.Login" parent="Theme.QuickBill">
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
 </resources>
