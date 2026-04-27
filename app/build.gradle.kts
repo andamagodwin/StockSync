@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.quickbill"
+        applicationId = "com.example.stocksync"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
