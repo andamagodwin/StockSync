@@ -97,13 +97,14 @@ class CreateOrderActivity : AppCompatActivity() {
         val custNames = customers.map { it.name }
         val prodNames = products.map { "${it.name} (Stock: ${it.quantity})" }
 
-        // An 'ArrayAdapter' bridges our data string list with the system's Spinner layout.
-        val custAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, custNames)
-        custAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        // Using custom layouts to fix the white-on-white text visibility issue
+        // We use com.example.quickbill.R explicitly to avoid unresolved reference in some IDE states
+        val custAdapter = ArrayAdapter(this, com.example.quickbill.R.layout.item_spinner, custNames)
+        custAdapter.setDropDownViewResource(com.example.quickbill.R.layout.item_spinner_dropdown)
         binding.spinnerCustomer.adapter = custAdapter
 
-        val prodAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, prodNames)
-        prodAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val prodAdapter = ArrayAdapter(this, com.example.quickbill.R.layout.item_spinner, prodNames)
+        prodAdapter.setDropDownViewResource(com.example.quickbill.R.layout.item_spinner_dropdown)
         binding.spinnerProduct.adapter = prodAdapter
     }
 }

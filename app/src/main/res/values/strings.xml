@@ -5,4 +5,22 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+    <!-- Drug-related strings -->
+    <string name="title_drugs">Drugs</string>
+    <string name="title_add_drug">Add New Drug</string>
+    <string name="title_edit_drug">Edit Drug</string>
+    <string name="label_drug_details">Drug Details</string>
+    <string name="hint_drug_name">Drug Name</string>
+    <string name="label_drug_image">Drug Image</string>
+    <string name="desc_drug_preview">Drug Preview</string>
+    <string name="btn_select_drug_image">Select Drug Image</string>
+    <string name="btn_change_drug_image">Change Drug Image</string>
+    <string name="btn_save_drug">Save Drug</string>
+    <string name="btn_update_drug">Update Drug</string>
+    <string name="btn_delete_drug">Delete Drug</string>
+    <string name="empty_drugs">No drugs yet</string>
+    <string name="empty_drugs_hint">Tap + to add your first drug</string>
+    <string name="label_select_drug">Select Drug</string>
+    <string name="prefix_stock">Stock: </string>
 </resources>

@@ -35,7 +35,7 @@ class ProductListActivity : AppCompatActivity() {
             loadFragment(HomeFragment())
         }
 
-        binding.bottomNav.setOnItemSelectedListener { item ->
+        binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     binding.toolbar.title = "QuickBill"

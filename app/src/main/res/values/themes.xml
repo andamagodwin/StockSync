@@ -10,15 +10,24 @@
         <item name="colorOnPrimary">@color/on_primary</item>
         <item name="colorOnSurface">@color/on_surface</item>
         <item name="colorError">@color/error</item>
-        <item name="android:statusBarColor">@color/status_bar</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@color/bottom_nav_bg</item>
         <item name="toolbarStyle">@style/Widget.QuickBill.Toolbar</item>
     </style>
 
+    <!-- Custom overlay to force icons (like 3-dots) to be white -->
+    <style name="ThemeOverlay.QuickBill.Toolbar" parent="ThemeOverlay.Material3.Dark">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
     <style name="Widget.QuickBill.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="titleTextAppearance">@style/TextAppearance.QuickBill.Toolbar.Title</item>
+        <!-- Dropdown menu: Dark text on Light background -->
+        <item name="popupTheme">@style/ThemeOverlay.Material3.Light</item>
+        <!-- Toolbar icons and title: White -->
+        <item name="android:theme">@style/ThemeOverlay.QuickBill.Toolbar</item>
     </style>
 
     <style name="TextAppearance.QuickBill.Toolbar.Title" parent="TextAppearance.Material3.TitleLarge">
@@ -72,7 +81,7 @@
     <style name="Theme.QuickBill" parent="Base.Theme.QuickBill" />
 
     <style name="Theme.QuickBill.Login" parent="Theme.QuickBill">
-        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
 

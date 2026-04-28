@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
         android:background="@drawable/gradient_primary"
-        app:title="Edit Product"
+        android:fitsSystemWindows="true"
+        app:title="@string/title_edit_drug"
         app:titleTextColor="@color/white"
         app:navigationIcon="@android:drawable/ic_menu_revert"
         app:navigationIconTint="@color/white"
@@ -46,7 +47,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Product Details"
+                        android:text="@string/label_drug_details"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/on_surface"
@@ -62,7 +63,7 @@
                             android:id="@+id/etProdName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Product Name"/>
+                            android:hint="@string/hint_drug_name"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -112,7 +113,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Product Image"
+                        android:text="@string/label_drug_image"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="@color/on_surface"
@@ -135,7 +136,7 @@
                             android:scaleType="centerCrop"
                             android:src="@android:drawable/ic_menu_gallery"
                             android:background="@color/background"
-                            android:contentDescription="Product Preview" />
+                            android:contentDescription="@string/desc_drug_preview" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <Button
@@ -143,7 +144,7 @@
                         style="@style/Widget.QuickBill.Button.Outlined"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Change Product Image" />
+                        android:text="@string/btn_change_drug_image" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -154,14 +155,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="12dp"
-                android:text="Update Product" />
+                android:text="@string/btn_update_drug" />
 
             <Button
                 android:id="@+id/btnDeleteProduct"
                 style="@style/Widget.QuickBill.Button.Danger"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:text="Delete Product" />
+                android:text="@string/btn_delete_drug" />
 
         </LinearLayout>
     </ScrollView>

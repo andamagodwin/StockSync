@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="Products" />
+        android:title="@string/title_drugs"
+        app:showAsAction="never" />
     <item
         android:id="@+id/nav_orders"
         android:icon="@drawable/ic_orders"
-        android:title="Orders" />
+        android:title="Orders"
+        app:showAsAction="never" />
     <item
         android:id="@+id/nav_customers"
         android:icon="@drawable/ic_customers"
-        android:title="Customers" />
+        android:title="Customers"
+        app:showAsAction="never" />
 </menu>

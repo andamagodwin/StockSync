@@ -15,7 +15,7 @@
     <color name="secondary_light">#FFFFD54F</color>
 
     <!-- Surfaces -->
-    <color name="background">#FFF0F2F8</color>
+    <color name="background">#E1F5FE</color>
     <color name="surface">#FFFFFFFF</color>
 
     <!-- On-colors -->
@@ -44,7 +44,7 @@
     <color name="bottom_nav_unselected">#99FFFFFF</color>
 
     <!-- Status bar -->
-    <color name="status_bar">#FF0D1259</color>
+    <color name="status_bar">#FF1A237E</color>
 
     <!-- Shimmer / skeleton -->
     <color name="shimmer">#FFE0E0E0</color>
