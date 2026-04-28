@@ -3,6 +3,7 @@ package com.example.quickbill.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import com.example.quickbill.R
 import com.example.quickbill.databinding.ActivityProductListBinding
@@ -19,9 +20,16 @@ class ProductListActivity : AppCompatActivity() {
         binding = ActivityProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set status bar color to match the gradient toolbar
-        @Suppress("DEPRECATION")
+        // Set status bar and navigation bar appearance
+        val window = window
         window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.bottom_nav_bg)
+        
+        // Ensure status bar icons are white (not dark) on our dark background
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = false
+            isAppearanceLightNavigationBars = false
+        }
 
         if (savedInstanceState == null) {
             loadFragment(HomeFragment())

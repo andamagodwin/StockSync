@@ -15,7 +15,7 @@
     <color name="secondary_light">#FFFFD54F</color>
 
     <!-- Surfaces -->
-    <color name="background">#FFF5F6FA</color>
+    <color name="background">#FFF0F2F8</color>
     <color name="surface">#FFFFFFFF</color>
 
     <!-- On-colors -->
@@ -39,8 +39,9 @@
     <color name="card_accent">#FF3F51B5</color>
 
     <!-- Bottom nav -->
-    <color name="bottom_nav_bg">#FFFFFFFF</color>
-    <color name="bottom_nav_indicator">#FFE8EAF6</color>
+    <color name="bottom_nav_bg">#FF1A237E</color>
+    <color name="bottom_nav_indicator">#33FFFFFF</color>
+    <color name="bottom_nav_unselected">#99FFFFFF</color>
 
     <!-- Status bar -->
     <color name="status_bar">#FF0D1259</color>

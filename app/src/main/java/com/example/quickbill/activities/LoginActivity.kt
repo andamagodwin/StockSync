@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import com.example.quickbill.R
 import com.example.quickbill.database.DatabaseHandler
 import com.example.quickbill.databinding.ActivityLoginBinding
@@ -19,9 +20,16 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set status bar color to match the gradient header
-        @Suppress("DEPRECATION")
+        // Set status bar and navigation bar appearance
+        val window = window
         window.statusBarColor = ContextCompat.getColor(this, R.color.primary_dark)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.bottom_nav_bg)
+        
+        // Ensure status bar icons are white (not dark) on our dark background
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = false
+            isAppearanceLightNavigationBars = false
+        }
 
         val db = DatabaseHandler(this)
         if (db.readCustomers().isEmpty()) {
