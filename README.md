@@ -1,61 +1,35 @@
-# QuickBill 📦✨
+# QuickBill: Pharmacy Management System
 
-**QuickBill** is a premium, high-performance retail and inventory management application for Android. Designed with a modern aesthetic and seamless user experience, it empowers small to medium businesses to manage stock, customers, and orders with professional precision.
+**QuickBill** is a specialized retail and inventory management application designed specifically for pharmacies. It streamlines the process of managing drug inventory, tracking patient records, and processing sales orders with a focus on speed, clarity, and ease of use.
 
----
+## Core Features
 
-## 🎨 Premium Design System
+- **Drug Inventory Management**: 
+  - Track stock levels, pricing, and details for all medications.
+  - Attach images to drugs for easy identification.
+  - Real-time stock updates as orders are placed.
 
-QuickBill features a custom-engineered **Indigo & Gold** design language:
-- **Immersive Branding**: Immersive gradient headers and a persistent colored status bar for a unified app experience.
-- **Visual Clarity**: High-density cards with stock badges, customer avatars, and colored order pills.
-- **Interactive UX**: Extended Floating Action Buttons (FABs), smooth transitions, and rich empty-state illustrations.
-- **Material 3**: Built on the latest Material Design foundations for a future-proof interface.
+- **Patient Records**:
+  - Maintain a structured database of patients.
+  - Quick access to patient contact information.
+  - Visual, avatar-based list for easy navigation.
 
----
+- **Seamless Ordering**:
+  - Simplified "Order Placement" flow matching patients to drugs.
+  - Automatic inventory deduction and error prevention (e.g., preventing sales of out-of-stock items).
+  - Order history tracking with timestamps.
 
-## 🚀 Key Features
+- **Modern Design**:
+  - Immersive UI with a transparent status bar and integrated headers.
+  - High-density information cards for efficient scanning.
+  - Dark mode support for low-light environments.
 
-- **Inventory Intelligence**: A polished 2-column grid view with real-time stock badges and high-performance image loading.
-- **Smart Photo Picker**: Effortlessly attach product photos using modern Android system pickers with persistent URI storage.
-- **Customer CRM**: Maintain structured records of your clientele with a clean, avatar-based interface.
-- **Transactional Ordering**: Atomic order placement that automatically synchronizes stock levels to prevent inventory drift.
-- **Order History**: A dedicated log of all business transactions with clear visual status indicators.
+## Technical Highlights
 
----
-
-## 🛠 Tech Stack
-
-- **Kotlin**: Modern, expressive code architecture.
-- **SQLite (ACID)**: Robust local persistence ensuring data integrity for all transactions.
-- **ViewBinding**: Type-safe and efficient UI interaction.
-- **Coil**: Advanced asynchronous image loading.
-- **Material 3**: Premium UI components and styling.
-
----
-
-## 📁 Architecture
-
-- `activities/`: Cleanly separated screen logic for high maintainability.
-- `models/`: Immutable data models representing core business entities.
-- `database/`: Centralized SQLite handler with transaction-aware operations.
-- `adapters/`: Optimized RecyclerView logic for smooth list performance.
+- **Architecture**: Modern Android architecture using ViewBinding and Fragments.
+- **Database**: ACID-compliant SQLite implementation via `DatabaseHandler`.
+- **UI Components**: Material 3 components, CoordinatorLayout, and high-performance RecyclerViews.
+- **Image Handling**: Integration with modern Android system photo pickers for drug documentation.
 
 ---
-
-## 📖 Documentation
-
-For a technical deep dive into the database schema and implementation details, please see **[PROJECT_DOCUMENTATION.md](./PROJECT_DOCUMENTATION.md)**.
-
----
-
-## 🏗 Setup & Installation
-
-1. Clone this repository.
-2. Open in **Android Studio (Ladybug or newer)**.
-3. Sync Gradle and build.
-4. Run on API 24+ (Recommended: API 35+ for best visual fidelity).
-
----
-
-*QuickBill — Streamlining Business, One Transaction at a Time.*
+*Developed for efficient pharmacy operations.*
