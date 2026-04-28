@@ -35,7 +35,7 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_customers"
-                android:contentDescription="Customer icon"
+                android:contentDescription="@string/desc_patient_icon"
                 app:tint="@color/primary"/>
         </FrameLayout>
 
@@ -49,7 +49,7 @@
                 android:id="@+id/tvCustomerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Customer Name"
+                android:text="@string/label_patient_name"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/on_surface"

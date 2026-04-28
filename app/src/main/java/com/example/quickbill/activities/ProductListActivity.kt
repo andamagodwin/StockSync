@@ -38,7 +38,7 @@ class ProductListActivity : AppCompatActivity() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    binding.toolbar.title = "QuickBill"
+                    binding.toolbar.title = getString(R.string.app_name)
                     loadFragment(HomeFragment())
                     true
                 }
@@ -48,7 +48,7 @@ class ProductListActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_customers -> {
-                    binding.toolbar.title = "Customers"
+                    binding.toolbar.title = getString(R.string.title_patients)
                     loadFragment(CustomersFragment())
                     true
                 }

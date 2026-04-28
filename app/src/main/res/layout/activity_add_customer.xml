@@ -12,7 +12,7 @@
         android:minHeight="?attr/actionBarSize"
         android:background="@drawable/gradient_primary"
         android:fitsSystemWindows="true"
-        app:title="Add Customer"
+        app:title="@string/title_add_patient"
         app:titleTextColor="@color/white"
         app:navigationIcon="@android:drawable/ic_menu_revert"
         app:navigationIconTint="@color/white"
@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Customer Information"
+                    android:text="@string/label_patient_info"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/on_surface"
@@ -60,7 +60,7 @@
                         android:id="@+id/etCustName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Customer Name"
+                        android:hint="@string/hint_patient_name"
                         android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,7 +86,7 @@
             style="@style/Widget.QuickBill.Button.Primary"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Save Customer" />
+            android:text="@string/btn_save_patient" />
 
     </LinearLayout>
 </LinearLayout>

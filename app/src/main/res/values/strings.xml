@@ -23,4 +23,18 @@
     <string name="empty_drugs_hint">Tap + to add your first drug</string>
     <string name="label_select_drug">Select Drug</string>
     <string name="prefix_stock">Stock: </string>
+
+    <!-- Patient-related strings -->
+    <string name="title_patients">Patients</string>
+    <string name="title_add_patient">Add Patient</string>
+    <string name="label_patient_info">Patient Information</string>
+    <string name="hint_patient_name">Patient Name</string>
+    <string name="btn_save_patient">Save Patient</string>
+    <string name="empty_patients">No patients yet</string>
+    <string name="empty_patients_hint">Tap + to add your first patient</string>
+    <string name="label_select_patient">Select Patient</string>
+    <string name="desc_add_patient">Add Patient</string>
+    <string name="desc_patient_icon">Patient icon</string>
+    <string name="prefix_patient">Patient: </string>
+    <string name="label_patient_name">Patient Name</string>
 </resources>
